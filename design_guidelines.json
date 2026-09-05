@@ -1,0 +1,154 @@
+{
+  "app_name": "Emzilla 🤎",
+  "personality": "6 Glass / Luxe DARK with 8 Hand-Drawn warmth",
+  "personality_one_liner": "A late-night coffee shop and warm intimate love letter designed to help Emzilla fall asleep peacefully.",
+  "color": {
+    "surface": "#1A1412",
+    "onSurface": "#F7F2EC",
+    "surfaceSecondary": "#2C221E",
+    "onSurfaceSecondary": "#E6DCD3",
+    "surfaceTertiary": "#3D302A",
+    "onSurfaceTertiary": "#D4C5BB",
+    "surfaceInverse": "#FAF6F0",
+    "onSurfaceInverse": "#1A1412",
+    "brand": "#8B5A2B",
+    "brandPrimary": "#C88A53",
+    "onBrandPrimary": "#1A1412",
+    "brandSecondary": "#A66E38",
+    "onBrandSecondary": "#FAF6F0",
+    "brandTertiary": "#4A3528",
+    "onBrandTertiary": "#F7F2EC",
+    "success": "#7A9A70",
+    "onSuccess": "#1A1412",
+    "warning": "#D4A373",
+    "onWarning": "#1A1412",
+    "error": "#B85C37",
+    "onError": "#FAF6F0",
+    "info": "#6B8E9B",
+    "onInfo": "#1A1412",
+    "border": "#3D302A",
+    "borderStrong": "#8B5A2B",
+    "divider": "#2C221E",
+    "muted": "#A89A90",
+    "onBrand": "#FAF6F0"
+  },
+  "typography": {
+    "displayFontFamily": "System",
+    "textFontFamily": "System",
+    "scale": {
+      "sm": 12,
+      "base": 14,
+      "lg": 16,
+      "xl": 20,
+      "2xl": 24
+    }
+  },
+  "spacing": {
+    "rule": "Generous cozy vertical rhythm, touch targets >= 44pt, sticky bottom CTA with safe area",
+    "xs": 4,
+    "sm": 8,
+    "md": 12,
+    "lg": 16,
+    "xl": 24,
+    "2xl": 32,
+    "3xl": 48
+  },
+  "radius_tokens": {
+    "sm": 8,
+    "md": 16,
+    "lg": 24,
+    "pill": 999
+  },
+  "shadow_tier": "2",
+  "navigation": "bottom_tabs",
+  "icon_set": "Ionicons",
+  "glassmorphism": {
+    "enabled": true,
+    "do's": [
+      "Use frosted glass on sticky headers and bottom tab bar",
+      "Layer translucent coffee brown tints over warm dark backdrops",
+      "Glass modal overlays for sleep mode and surprise easter egg"
+    ],
+    "dont's": [
+      "Never blur text directly",
+      "Avoid harsh pure black"
+    ]
+  },
+  "platform_libraries": {
+    "glass": {
+      "ios": "expo-glass-effect",
+      "android": "expo-blur",
+      "low_end_android_fallback": "solid surfaceSecondary"
+    },
+    "image": "expo-image",
+    "blur": "expo-blur",
+    "bottom_sheet": "@gorhom/bottom-sheet",
+    "animation": "react-native-reanimated",
+    "gesture": "react-native-gesture-handler"
+  },
+  "screens": [
+    {
+      "name": "Home",
+      "purpose": "Personal greeting 'Hey, Emzilla 🤎', cozy coffee aesthetic, and quick entry into voice recordings",
+      "states": {
+        "loading": "Warm coffee cup pulsing animation",
+        "empty": "No recordings available",
+        "error": "Failed to load audio configuration"
+      },
+      "layout": "Vertical scroll with hero welcome card, quick stats/mood, primary CTA button 'Let me help you sleep ☕', and featured recording preview."
+    },
+    {
+      "name": "Sleep & Voice Recordings",
+      "purpose": "List of voice recordings for the nights she can't sleep with playback controls and timer",
+      "states": {
+        "loading": "Skeleton loading list",
+        "empty": "No audio tracks configured",
+        "error": "Audio playback error"
+      },
+      "layout": "Categorized list of audio cards with titles, descriptions, live duration, play/pause state, and progress bar."
+    },
+    {
+      "name": "Sleep Mode",
+      "purpose": "Minimal dark immersive mode for falling asleep with timer options (15/30/60m)",
+      "states": {
+        "loading": "Fading into sleep mode",
+        "empty": "No active track",
+        "error": "Playback interrupted"
+      },
+      "layout": "Minimalist centered UI with breathing moon/coffee icon, active track title, large play button, and sleep timer selector."
+    },
+    {
+      "name": "Personal Note",
+      "purpose": "A heartfelt love letter from me to Emzilla",
+      "states": {
+        "loading": "Loading note",
+        "empty": "Note not found",
+        "error": "Failed to load note"
+      },
+      "layout": "Paper-like parchment card with warm typography and editable romantic note."
+    },
+    {
+      "name": "Secret Birthday Easter Egg",
+      "purpose": "Hidden birthday surprise revealed by tapping the coffee cup 3 times",
+      "states": {
+        "loading": "Unlocking surprise",
+        "empty": "Locked",
+        "error": "Error"
+      },
+      "layout": "Full-screen celebration modal with warm glowing particles, custom birthday message, and romantic sign-off 'Okay, now go to sleep. ☕🤎'."
+    }
+  ],
+  "images": {
+    "hero_coffee": {
+      "url": "https://images.unsplash.com/photo-1593443320739-77f74939d0da",
+      "dark": "https://images.unsplash.com/photo-1593443320739-77f74939d0da",
+      "alt": "Cozy warm coffee cup with latte art"
+    },
+    "coffee_shop": {
+      "url": "https://images.unsplash.com/photo-1645677020082-721a854c24f2",
+      "dark": "https://images.unsplash.com/photo-1645677020082-721a854c24f2",
+      "alt": "Late night coffee shop warm lighting"
+    }
+  },
+  "instructions_to_main_agent": "Implement a fully responsive mobile app named 'Emzilla 🤎' for iOS and Android using Expo and React Native. The app is a romantic personal gift featuring a sophisticated coffee-brown and warm cream aesthetic (deep espresso, warm brown, cream). Include a personal welcome home screen with 'Hey, Emzilla 🤎', voice recording cards with audio playback placeholders and replacement instructions, a 'Surprise Me' random playback button, a dedicated immersive Sleep Mode with 15/30/60m sleep timers, an editable personal love letter note, and a secret birthday easter egg triggered by tapping the home screen coffee cup 3 times. Ensure touch targets >= 44pt, safe area compliance, and smooth animations."
+}
