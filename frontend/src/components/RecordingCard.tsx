@@ -44,7 +44,7 @@ export function RecordingCard({ recording, active, playing, progress, currentTim
         <Text style={styles.time}>{formatTime(currentTime)}</Text>
         <Text style={styles.time}>{formatTime(duration)}</Text>
       </View>
-      {active && !recording.file ? <Text style={styles.placeholder}>Placeholder audio · add your recording in src/content.ts</Text> : null}
+      {active && !recording.file ? <Text style={styles.placeholder}>placeholder audio · add your recording in src/content.ts</Text> : null}
     </View>
   );
 }

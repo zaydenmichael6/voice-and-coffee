@@ -32,6 +32,12 @@ Build a private, romantic sleep companion for Emzilla: a warm coffee-brown mobil
 - Added PWA manifest/service worker registration and updated app metadata.
 - Verified with TypeScript, ESLint, and Expo browser testing at 390x844. Core frontend test pass rate: 100%.
 
+## Text/UI update — 2026-09-08
+- Replaced the personal note with the requested lowercase “angel” message while preserving the existing editable note treatment and readable line breaks supplied in the request.
+- Replaced the triple-tap birthday copy, promoted “happy bdayy my goat” as the large heading, and made the reveal content a full-height scroll container for smaller screens.
+- Lowercased all visible app copy, including buttons, labels, recording metadata, Sleep Mode, fallback messaging, app metadata, and install metadata; accessibility labels and technical paths remain unchanged by request.
+- Regression-checked note editing, triple-tap reveal, birthday scrolling, playback, Sleep Mode, and mobile overflow with no functional regressions.
+
 ## Prioritized backlog
 
 ### P0 — next task

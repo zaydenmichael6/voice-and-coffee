@@ -7,12 +7,12 @@ import { useEffect, useRef, useState } from "react";
 import { Animated, KeyboardAvoidingView, LayoutAnimation, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import { BIRTHDAY_MESSAGE, DEFAULT_NOTE, recordings, type RecordingConfig } from "@/src/content";
+import { BIRTHDAY_MESSAGE, BIRTHDAY_TITLE, DEFAULT_NOTE, recordings, type RecordingConfig } from "@/src/content";
 import { RecordingCard } from "@/src/components/RecordingCard";
 import { SleepMode } from "@/src/components/SleepMode";
 import { makeStyles } from "@/src/theme";
 
-const NOTE_KEY = "emzilla-personal-note";
+const NOTE_KEY = "emzilla-personal-note-v2";
 
 export default function Index() {
   const styles = useStyles();
@@ -160,8 +160,8 @@ export default function Index() {
         <ScrollView ref={scrollRef} testID="home-screen" contentContainerStyle={[styles.content, { paddingTop: insets.top + 18, paddingBottom: insets.bottom + 28 }]} showsVerticalScrollIndicator={false}>
           <View style={styles.header}>
             <View>
-              <Text style={styles.eyebrow}>YOUR LITTLE SLEEP SPACE</Text>
-              <Text style={styles.brand}>Emzilla <Text style={styles.brandHeart}>🤎</Text></Text>
+              <Text style={styles.eyebrow}>your little sleep space</Text>
+              <Text style={styles.brand}>emzilla <Text style={styles.brandHeart}>🤎</Text></Text>
             </View>
             <Pressable onPress={handleCoffeeTap} accessibilityRole="button" accessibilityLabel="Coffee cup surprise" testID="coffee-secret" style={({ pressed }) => [styles.coffeeButton, pressed && styles.pressed]}>
               <Ionicons name="cafe" size={21} color={styles.coffeeIcon.color} />
@@ -170,11 +170,11 @@ export default function Index() {
 
           <View style={styles.hero}>
             <View style={styles.heroCopy}>
-              <Text style={styles.greeting}>Hey, Emzilla 🤎</Text>
-              <Text style={styles.heroTitle}>Can&apos;t sleep?</Text>
-              <Text style={styles.heroSubtitle}>Don&apos;t worry. I&apos;m right here.</Text>
+              <Text style={styles.greeting}>hey, emzilla 🤎</Text>
+              <Text style={styles.heroTitle}>can&apos;t sleep?</Text>
+              <Text style={styles.heroSubtitle}>don&apos;t worry. i&apos;m right here.</Text>
               <Pressable onPress={startListening} testID="sleep-cta" accessibilityRole="button" style={({ pressed }) => [styles.primaryButton, pressed && styles.pressed]}>
-                <Text style={styles.primaryButtonText}>Let me help you sleep</Text>
+                <Text style={styles.primaryButtonText}>let me help you sleep</Text>
                 <Ionicons name="arrow-forward" size={18} color={styles.primaryButtonIcon.color} />
               </Pressable>
             </View>
@@ -194,30 +194,30 @@ export default function Index() {
           </View>
 
           <View style={styles.sectionHeader}>
-            <View style={styles.sectionTitleWrap}><Text style={styles.sectionTitle}>For the nights</Text><Text style={styles.sectionTitleAccent}>you can&apos;t sleep 🤎</Text></View>
+            <View style={styles.sectionTitleWrap}><Text style={styles.sectionTitle}>for the nights</Text><Text style={styles.sectionTitleAccent}>you can&apos;t sleep 🤎</Text></View>
             <Text style={styles.trackCount}>{recordings.length} little notes</Text>
           </View>
 
           <View style={styles.featuredCard}>
             <View style={styles.featuredIcon}><Ionicons name="volume-medium-outline" size={22} color={styles.featuredIconColor.color} /></View>
-            <View style={styles.featuredCopy}><Text style={styles.featuredLabel}>READY WHEN YOU ARE</Text><Text style={styles.featuredTitle}>{activeRecording?.title ?? "Pick a little piece of me"}</Text></View>
-            <Pressable onPress={openSleepMode} testID="sleep-mode-button" accessibilityRole="button" style={({ pressed }) => [styles.sleepButton, pressed && styles.pressed]}><Ionicons name="moon-outline" size={18} color={styles.sleepButtonIcon.color} /><Text style={styles.sleepButtonText}>Sleep mode</Text></Pressable>
+            <View style={styles.featuredCopy}><Text style={styles.featuredLabel}>ready when you are</Text><Text style={styles.featuredTitle}>{activeRecording?.title ?? "pick a little piece of me"}</Text></View>
+            <Pressable onPress={openSleepMode} testID="sleep-mode-button" accessibilityRole="button" style={({ pressed }) => [styles.sleepButton, pressed && styles.pressed]}><Ionicons name="moon-outline" size={18} color={styles.sleepButtonIcon.color} /><Text style={styles.sleepButtonText}>sleep mode</Text></Pressable>
           </View>
 
           {recordings.map((recording) => <RecordingCard key={recording.id} recording={recording} active={recording.id === activeId} playing={recording.id === activeId && isPlaying} progress={recording.id === activeId ? progress : 0} currentTime={recording.id === activeId ? currentTime : 0} duration={recording.id === activeId ? duration : recording.placeholderDuration} onToggle={() => toggleRecording(recording)} />)}
 
           <Pressable onPress={surpriseMe} testID="surprise-me" accessibilityRole="button" style={({ pressed }) => [styles.surpriseButton, pressed && styles.pressed]}>
-            <Ionicons name="sparkles" size={18} color={styles.surpriseIcon.color} /><Text style={styles.surpriseText}>Surprise me</Text><Ionicons name="shuffle" size={17} color={styles.surpriseIcon.color} />
+            <Ionicons name="sparkles" size={18} color={styles.surpriseIcon.color} /><Text style={styles.surpriseText}>surprise me</Text><Ionicons name="shuffle" size={17} color={styles.surpriseIcon.color} />
           </Pressable>
 
           <View style={styles.noteSection}>
-            <View style={styles.noteHeading}><View style={styles.noteIcon}><Ionicons name="mail-open-outline" size={20} color={styles.noteIconColor.color} /></View><View><Text style={styles.eyebrow}>A LOVE LETTER</Text><Text style={styles.noteTitle}>A little note from me</Text></View></View>
+            <View style={styles.noteHeading}><View style={styles.noteIcon}><Ionicons name="mail-open-outline" size={20} color={styles.noteIconColor.color} /></View><View><Text style={styles.eyebrow}>a love letter</Text><Text style={styles.noteTitle}>a little note from me</Text></View></View>
             <TextInput value={note} onChangeText={setNote} multiline textAlignVertical="top" style={styles.noteInput} placeholderTextColor={styles.mutedText.color} accessibilityLabel="Personal note" />
-            <Pressable onPress={saveNote} accessibilityRole="button" style={({ pressed }) => [styles.saveButton, pressed && styles.pressed]}><Text style={styles.saveButtonText}>{noteSaved ? "Saved with love" : "Save this note"}</Text><Ionicons name={noteSaved ? "checkmark" : "heart-outline"} size={16} color={styles.saveIcon.color} /></Pressable>
+            <Pressable onPress={saveNote} accessibilityRole="button" style={({ pressed }) => [styles.saveButton, pressed && styles.pressed]}><Text style={styles.saveButtonText}>{noteSaved ? "saved with love" : "save this note"}</Text><Ionicons name={noteSaved ? "checkmark" : "heart-outline"} size={16} color={styles.saveIcon.color} /></Pressable>
           </View>
 
-          <View style={styles.replaceBox}><Ionicons name="information-circle-outline" size={19} color={styles.infoIcon.color} /><View style={styles.replaceCopy}><Text style={styles.replaceTitle}>Make it yours</Text><Text style={styles.replaceText}>Your cards are ready for real recordings. In <Text style={styles.replaceCode}>src/content.ts</Text>, change a file from null to your audio asset in assets/audio.</Text></View></View>
-          <Text style={styles.footer}>A tiny digital love letter, for the nights you need me.</Text>
+          <View style={styles.replaceBox}><Ionicons name="information-circle-outline" size={19} color={styles.infoIcon.color} /><View style={styles.replaceCopy}><Text style={styles.replaceTitle}>make it yours</Text><Text style={styles.replaceText}>your cards are ready for real recordings. in <Text style={styles.replaceCode}>src/content.ts</Text>, change a file from null to your audio asset in assets/audio.</Text></View></View>
+          <Text style={styles.footer}>a tiny digital love letter, for the nights you need me.</Text>
         </ScrollView>
       </LinearGradient>
       {sleepMode ? <SleepMode recording={activeRecording} playing={isPlaying} timer={timer} remaining={timerRemaining} onTimer={handleTimer} onToggle={() => activeRecording && toggleRecording(activeRecording)} onClose={() => setSleepMode(false)} /> : null}
@@ -232,12 +232,13 @@ function BirthdayModal({ visible, onClose }: { visible: boolean; onClose: () => 
   useEffect(() => { if (visible) Animated.timing(fade, { toValue: 1, duration: 650, useNativeDriver: true }).start(); }, [fade, visible]);
   return (
     <Animated.View pointerEvents={visible ? "auto" : "none"} style={[styles.birthdayOverlay, { opacity: visible ? fade : 0 }]}>
-      <View style={styles.birthdayGlow}><Ionicons name="cafe" size={30} color={styles.birthdayIcon.color} /></View>
-      <Text style={styles.birthdayKicker}>A tiny secret, just for you</Text>
-      <Text style={styles.birthdayTitle}>Happy Birthday, Emzilla 🤎</Text>
-      <Text style={styles.birthdayBody}>{BIRTHDAY_MESSAGE}</Text>
-      <Text style={styles.birthdaySignoff}>Okay, now go to sleep. 😭🤎</Text>
-      <Pressable onPress={onClose} accessibilityRole="button" style={({ pressed }) => [styles.birthdayButton, pressed && styles.pressed]}><Text style={styles.birthdayButtonText}>Keep this little secret</Text></Pressable>
+      <ScrollView testID="birthday-scroll" style={styles.birthdayScroll} contentContainerStyle={styles.birthdayScrollContent} showsVerticalScrollIndicator={false}>
+        <View style={styles.birthdayGlow}><Ionicons name="cafe" size={30} color={styles.birthdayIcon.color} /></View>
+        <Text style={styles.birthdayKicker}>a tiny secret, just for you</Text>
+        <Text style={styles.birthdayTitle}>{BIRTHDAY_TITLE}</Text>
+        <Text style={styles.birthdayBody}>{BIRTHDAY_MESSAGE}</Text>
+        <Pressable onPress={onClose} accessibilityRole="button" style={({ pressed }) => [styles.birthdayButton, pressed && styles.pressed]}><Text style={styles.birthdayButtonText}>keep this little secret</Text></Pressable>
+      </ScrollView>
     </Animated.View>
   );
 }
@@ -251,5 +252,5 @@ const useStyles = makeStyles((colors) => StyleSheet.create({
   surpriseButton: { alignItems: "center", backgroundColor: colors.brandSecondary, borderRadius: 18, flexDirection: "row", gap: 10, justifyContent: "center", marginVertical: 7, minHeight: 54 }, surpriseIcon: { color: colors.onBrandSecondary }, surpriseText: { color: colors.onBrandSecondary, fontSize: 15, fontWeight: "700" },
   noteSection: { backgroundColor: colors.surfaceInverse, borderRadius: 24, marginTop: 31, padding: 20 }, noteHeading: { alignItems: "center", flexDirection: "row", gap: 12 }, noteIcon: { alignItems: "center", backgroundColor: colors.brandTertiary, borderRadius: 17, height: 46, justifyContent: "center", width: 46 }, noteIconColor: { color: colors.brandPrimary }, noteTitle: { color: colors.onSurfaceInverse, fontSize: 20, fontWeight: "700", marginTop: 4 }, noteInput: { color: colors.onSurfaceInverse, fontSize: 16, lineHeight: 25, minHeight: 205, paddingBottom: 8, paddingTop: 22 }, mutedText: { color: colors.muted }, saveButton: { alignItems: "center", alignSelf: "flex-start", backgroundColor: colors.brandPrimary, borderRadius: 14, flexDirection: "row", gap: 8, minHeight: 44, paddingHorizontal: 14 }, saveButtonText: { color: colors.onBrandPrimary, fontSize: 13, fontWeight: "700" }, saveIcon: { color: colors.onBrandPrimary },
   replaceBox: { alignItems: "flex-start", backgroundColor: colors.surfaceSecondary, borderColor: colors.border, borderRadius: 18, borderWidth: 1, flexDirection: "row", gap: 10, marginTop: 18, padding: 15 }, infoIcon: { color: colors.brandPrimary, marginTop: 1 }, replaceCopy: { flex: 1, gap: 5 }, replaceTitle: { color: colors.onSurfaceSecondary, fontSize: 13, fontWeight: "700" }, replaceText: { color: colors.muted, fontSize: 12, lineHeight: 18 }, replaceCode: { color: colors.brandPrimary, fontWeight: "700" }, footer: { color: colors.muted, fontSize: 12, lineHeight: 18, marginTop: 27, textAlign: "center" },
-  birthdayOverlay: { alignItems: "center", backgroundColor: colors.surface, bottom: 0, justifyContent: "center", left: 0, paddingHorizontal: 28, paddingVertical: 30, position: "absolute", right: 0, top: 0, zIndex: 20 }, birthdayGlow: { alignItems: "center", backgroundColor: colors.brandTertiary, borderColor: colors.borderStrong, borderRadius: 42, borderWidth: 1, height: 84, justifyContent: "center", marginBottom: 22, shadowColor: colors.brandPrimary, shadowOpacity: 0.35, shadowRadius: 28, shadowOffset: { width: 0, height: 10 }, width: 84 }, birthdayIcon: { color: colors.brandPrimary }, birthdayKicker: { color: colors.brandPrimary, fontSize: 12, fontWeight: "700", letterSpacing: 1.1, textTransform: "uppercase" }, birthdayTitle: { color: colors.onSurface, fontSize: 29, fontWeight: "700", marginTop: 13, textAlign: "center" }, birthdayBody: { color: colors.onSurfaceSecondary, fontSize: 16, lineHeight: 25, marginTop: 27, textAlign: "center" }, birthdaySignoff: { color: colors.brandPrimary, fontSize: 15, fontWeight: "700", marginTop: 23, textAlign: "center" }, birthdayButton: { borderColor: colors.borderStrong, borderRadius: 17, borderWidth: 1, marginTop: 27, minHeight: 48, justifyContent: "center", paddingHorizontal: 18 }, birthdayButtonText: { color: colors.onSurface, fontSize: 13, fontWeight: "700" },
+  birthdayOverlay: { alignItems: "center", backgroundColor: colors.surface, bottom: 0, justifyContent: "center", left: 0, paddingHorizontal: 28, position: "absolute", right: 0, top: 0, zIndex: 20 }, birthdayScroll: { flex: 1, width: "100%" }, birthdayScrollContent: { alignItems: "center", justifyContent: "center", paddingVertical: 30 }, birthdayGlow: { alignItems: "center", backgroundColor: colors.brandTertiary, borderColor: colors.borderStrong, borderRadius: 42, borderWidth: 1, height: 84, justifyContent: "center", marginBottom: 22, shadowColor: colors.brandPrimary, shadowOpacity: 0.35, shadowRadius: 28, shadowOffset: { width: 0, height: 10 }, width: 84 }, birthdayIcon: { color: colors.brandPrimary }, birthdayKicker: { color: colors.brandPrimary, fontSize: 12, fontWeight: "700", letterSpacing: 1.1 }, birthdayTitle: { color: colors.onSurface, fontSize: 34, fontWeight: "700", lineHeight: 40, marginTop: 13, textAlign: "center" }, birthdayBody: { color: colors.onSurfaceSecondary, fontSize: 16, lineHeight: 25, marginTop: 27, textAlign: "center" }, birthdayButton: { borderColor: colors.borderStrong, borderRadius: 17, borderWidth: 1, marginTop: 27, minHeight: 48, justifyContent: "center", paddingHorizontal: 18 }, birthdayButtonText: { color: colors.onSurface, fontSize: 13, fontWeight: "700" },
 }));

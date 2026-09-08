@@ -25,7 +25,7 @@ export function SleepMode({ recording, playing, timer, remaining, onTimer, onTog
   return (
     <View style={[styles.container, { paddingTop: insets.top + 20, paddingBottom: insets.bottom + 20 }]}> 
         <View style={styles.topRow}>
-          <Text style={styles.modeLabel}>SLEEP MODE</Text>
+        <Text style={styles.modeLabel}>sleep mode</Text>
           <Pressable onPress={onClose} hitSlop={12} accessibilityRole="button" accessibilityLabel="Close sleep mode" style={styles.closeButton}>
             <Ionicons name="close" size={22} color={styles.closeIcon.color} />
           </Pressable>
@@ -34,20 +34,20 @@ export function SleepMode({ recording, playing, timer, remaining, onTimer, onTog
           <Animated.View style={[styles.moonGlow, { transform: [{ scale: breathe }] }]}>
             <Ionicons name="moon" size={38} color={styles.moon.color} />
           </Animated.View>
-          <Text style={styles.kicker}>A little quieter now</Text>
-          <Text style={styles.title}>{recording?.title ?? "I'm right here"}</Text>
-          <Text style={styles.subtitle}>Put your phone beside your pillow.</Text>
+          <Text style={styles.kicker}>a little quieter now</Text>
+          <Text style={styles.title}>{recording?.title ?? "i'm right here"}</Text>
+          <Text style={styles.subtitle}>put your phone beside your pillow.</Text>
           <Pressable onPress={onToggle} accessibilityRole="button" accessibilityLabel={playing ? "Pause recording" : "Play recording"} style={({ pressed }) => [styles.mainButton, pressed && styles.pressed]}>
             <Ionicons name={playing ? "pause" : "play"} size={26} color={styles.mainIcon.color} />
           </Pressable>
-          <Text style={styles.helper}>{playing ? "I'm staying right here with you" : "Press play when you're ready"}</Text>
+          <Text style={styles.helper}>{playing ? "i'm staying right here with you" : "press play when you're ready"}</Text>
         </View>
         <View style={styles.timerBox}>
-          <View style={styles.timerHeading}><Text style={styles.timerTitle}>Sleep timer</Text><Text style={styles.remaining}>{timer > 0 && remaining > 0 ? `${Math.floor(remaining / 60)}:${String(remaining % 60).padStart(2, "0")} left` : "ends with recording"}</Text></View>
+          <View style={styles.timerHeading}><Text style={styles.timerTitle}>sleep timer</Text><Text style={styles.remaining}>{timer > 0 && remaining > 0 ? `${Math.floor(remaining / 60)}:${String(remaining % 60).padStart(2, "0")} left` : "ends with recording"}</Text></View>
           <View style={styles.timerRow}>
             {[15, 30, 60, 0].map((value) => (
               <Pressable key={value} onPress={() => onTimer(value)} accessibilityRole="button" style={[styles.timerChip, timer === value && styles.timerChipActive]}>
-                <Text style={[styles.timerText, timer === value && styles.timerTextActive]}>{value === 0 ? "End" : `${value}m`}</Text>
+                <Text style={[styles.timerText, timer === value && styles.timerTextActive]}>{value === 0 ? "end" : `${value}m`}</Text>
               </Pressable>
             ))}
           </View>

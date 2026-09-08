@@ -1,7 +1,7 @@
 {
-  "name": "Emzilla 🤎",
-  "short_name": "Emzilla",
-  "description": "A tiny digital love letter for the nights Emzilla needs me.",
+  "name": "emzilla 🤎",
+  "short_name": "emzilla",
+  "description": "a tiny digital love letter for the nights emzilla needs me.",
   "display": "standalone",
   "orientation": "portrait",
   "start_url": "/",
