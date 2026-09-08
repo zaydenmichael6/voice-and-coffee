@@ -37,6 +37,7 @@ Build a private, romantic sleep companion for Emzilla: a warm coffee-brown mobil
 - Replaced the triple-tap birthday copy, promoted “happy bdayy my goat” as the large heading, and made the reveal content a full-height scroll container for smaller screens.
 - Lowercased all visible app copy, including buttons, labels, recording metadata, Sleep Mode, fallback messaging, app metadata, and install metadata; accessibility labels and technical paths remain unchanged by request.
 - Regression-checked note editing, triple-tap reveal, birthday scrolling, playback, Sleep Mode, and mobile overflow with no functional regressions.
+- Updated the home introduction greeting to “hi princess 🤎” without changing its existing styling or behavior.
 
 ## Prioritized backlog
 

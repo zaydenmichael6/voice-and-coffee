@@ -170,7 +170,7 @@ export default function Index() {
 
           <View style={styles.hero}>
             <View style={styles.heroCopy}>
-              <Text style={styles.greeting}>hey, emzilla 🤎</Text>
+              <Text style={styles.greeting}>hi princess 🤎</Text>
               <Text style={styles.heroTitle}>can&apos;t sleep?</Text>
               <Text style={styles.heroSubtitle}>don&apos;t worry. i&apos;m right here.</Text>
               <Pressable onPress={startListening} testID="sleep-cta" accessibilityRole="button" style={({ pressed }) => [styles.primaryButton, pressed && styles.pressed]}>
