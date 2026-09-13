@@ -216,7 +216,7 @@ export default function Index() {
             <Pressable onPress={saveNote} accessibilityRole="button" style={({ pressed }) => [styles.saveButton, pressed && styles.pressed]}><Text style={styles.saveButtonText}>{noteSaved ? "saved with love" : "save this note"}</Text><Ionicons name={noteSaved ? "checkmark" : "heart-outline"} size={16} color={styles.saveIcon.color} /></Pressable>
           </View>
 
-          <View style={styles.replaceBox}><Ionicons name="information-circle-outline" size={19} color={styles.infoIcon.color} /><View style={styles.replaceCopy}><Text style={styles.replaceTitle}>make it yours</Text><Text style={styles.replaceText}>your cards are ready for real recordings. in <Text style={styles.replaceCode}>src/content.ts</Text>, change a file from null to your audio asset in assets/audio.</Text></View></View>
+          <View style={styles.replaceBox}><Ionicons name="information-circle-outline" size={19} color={styles.infoIcon.color} /><View style={styles.replaceCopy}><Text style={styles.replaceTitle}>make it yours</Text><Text style={styles.replaceText}>your real voice recordings are connected. to change them later, edit <Text style={styles.replaceCode}>src/content.ts</Text> — your audio lives in assets/audio.</Text></View></View>
           <Text style={styles.footer}>a tiny digital love letter, for the nights you need me.</Text>
         </ScrollView>
       </LinearGradient>

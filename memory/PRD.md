@@ -39,15 +39,18 @@ Build a private, romantic sleep companion for Emzilla: a warm coffee-brown mobil
 - Regression-checked note editing, triple-tap reveal, birthday scrolling, playback, Sleep Mode, and mobile overflow with no functional regressions.
 - Updated the home introduction greeting to “hi princess 🤎” without changing its existing styling or behavior.
 
-## Prioritized backlog
+## Real recordings connected — 2026-09-13
+- Replaced all six placeholder entries in `src/content.ts` with the five creator-supplied voice files under `frontend/assets/audio/`, exactly mapped: `1 yr`, `dreams`, `why i love u`, `e m i l y`, `happy bday baby`.
+- Updated the stale "make it yours" info-box copy to reflect that real recordings are connected; no other UI, styling, layout, animation, or navigation changes.
+- Verified every `.m4a` asset resolves and is served by Metro with correct `audio/mp4` MIME (HTTP 200/206), cards render with exact lowercase titles, exclusive-play and play/pause state toggling confirmed at 390x844.
+- Note: M4A/AAC cannot decode in the headless-Chromium test browser (no proprietary codecs), so in-browser preview play stays silent there; M4A plays natively on iPhone, Android, and Expo Go, which are the real targets.
 
-### P0 — next task
-- Add the creator’s real voice files under `frontend/assets/audio/` and replace the six `file: null` entries in `src/content.ts`.
+## Prioritized backlog
 
 ### P1 — valuable enhancements
 - Add real app icon artwork based on the coffee cup mark instead of the starter icon.
 - Add optional lock-screen metadata/background audio configuration for native sleep sessions.
-- Add a small “install this app” hint only when the browser exposes an install prompt.
+- Add a small "install this app" hint only when the browser exposes an install prompt.
 
 ### P2 — polish ideas
 - Add a subtle waveform visualization driven by real audio samples.
@@ -55,9 +58,8 @@ Build a private, romantic sleep companion for Emzilla: a warm coffee-brown mobil
 - Add gentle haptic confirmation for play, timer, and birthday reveal on native devices.
 
 ## Next tasks list
-1. Copy voice recordings into `frontend/assets/audio/`.
-2. Update only the `file` fields in `frontend/src/content.ts`.
-3. Test each recording on the target iPhone and Android device with the phone volume and silent-mode behavior checked.
+1. Test each recording on Emzilla's actual iPhone/Android (or Expo Go) with volume and silent-mode behavior checked.
+2. Optionally replace placeholder durations — real durations load automatically from each file once playback starts.
 
 ## Known intentional limitation
-The initial audio entries are **PLACEHOLDER playback states** because real recordings were not supplied. The UI, progress behavior, and native audio integration are ready; real voice audio becomes active by following the visible replacement instructions and updating `src/content.ts`.
+- None blocking. All five real recordings are wired; the headless test browser's lack of AAC codec support is an environment-only limitation, not an app bug.

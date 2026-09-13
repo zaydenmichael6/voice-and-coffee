@@ -12,12 +12,11 @@ export type RecordingConfig = {
 };
 
 export const recordings: RecordingConfig[] = [
-  { id: "goodnight", title: "goodnight, emzilla", description: "just close your eyes and listen to me.", icon: "moon-outline", file: null, placeholderDuration: 18 },
-  { id: "right-here", title: "i'm right here", description: "you don't have to think about anything right now.", icon: "heart-outline", file: null, placeholderDuration: 22 },
-  { id: "close-eyes", title: "close your eyes", description: "just breathe and relax.", icon: "sparkles-outline", file: null, placeholderDuration: 16 },
-  { id: "sleep-baby", title: "go to sleep, baby", description: "you've done enough for today.", icon: "cloud-outline", file: null, placeholderDuration: 20 },
-  { id: "coffee-break", title: "a little coffee break", description: "okay, no coffee right now. you need to sleep.", icon: "cafe-outline", file: null, placeholderDuration: 24 },
-  { id: "miss-me", title: "when you miss me", description: "this one's for when you just need to hear my voice.", icon: "infinite-outline", file: null, placeholderDuration: 26 },
+  { id: "one-yr", title: "1 yr", description: "one whole year of us. 🤎", icon: "heart-outline", file: require("../assets/audio/1 yr.m4a"), placeholderDuration: 18 },
+  { id: "dreams", title: "dreams", description: "meet me in your dreams.", icon: "moon-outline", file: require("../assets/audio/dreams.m4a"), placeholderDuration: 22 },
+  { id: "why-i-love-u", title: "why i love u", description: "a few of the endless reasons.", icon: "infinite-outline", file: require("../assets/audio/why i love u.m4a"), placeholderDuration: 16 },
+  { id: "emily", title: "e m i l y", description: "your name, the way i love saying it.", icon: "sparkles-outline", file: require("../assets/audio/e m i l y.m4a"), placeholderDuration: 20 },
+  { id: "happy-bday-baby", title: "happy bday baby", description: "for your special day, my love.", icon: "cafe-outline", file: require("../assets/audio/happy bday baby.m4a"), placeholderDuration: 24 },
 ];
 
 export const DEFAULT_NOTE = `whenever you can't sleep, come here close your eyes, press play,\nand pretend i'm right beside you.\n\ni may not physically be there,\nbut i'm always only one play button away.\n\ngoodnight, angel :) 🤎`;
