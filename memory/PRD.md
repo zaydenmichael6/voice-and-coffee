@@ -75,6 +75,11 @@ Build a private, romantic sleep companion for Emzilla: a warm coffee-brown mobil
 - Bumped service-worker cache to `emzilla-shell-v2`; audio streams stay uncached.
 - Verified: all PWA assets serve HTTP 200, live DOM contains every required tag, service worker registers, and playback/waveform/UI are unchanged.
 
+## Pre-deploy verification — 2026-09-13
+- Deployment health check: PASS, zero blockers (app identity, ports, assets, compilation, env files all clean).
+- Full regression via testing agent (`/app/test_reports/iteration_3.json`): 19/19 checks pass — rendering, all 5 cards, play/waveform/exclusive playback, surprise me, sleep mode timers with countdown, note editing, triple-tap birthday reveal, install hint (both UA branches + persistence), PWA DOM tags, asset availability, lowercase enforcement.
+- Only remaining note: two react-native-web deprecation console warnings (shadow props, pointerEvents) — non-blocking, web-only.
+
 ## Prioritized backlog
 
 ### P1 — valuable enhancements
