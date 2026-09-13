@@ -45,10 +45,16 @@ Build a private, romantic sleep companion for Emzilla: a warm coffee-brown mobil
 - Verified every `.m4a` asset resolves and is served by Metro with correct `audio/mp4` MIME (HTTP 200/206), cards render with exact lowercase titles, exclusive-play and play/pause state toggling confirmed at 390x844.
 - Note: M4A/AAC cannot decode in the headless-Chromium test browser (no proprietary codecs), so in-browser preview play stays silent there; M4A plays natively on iPhone, Android, and Expo Go, which are the real targets.
 
+## Custom app icon + silent-mode audio — 2026-09-13
+- Generated a full icon set with a script (`/tmp/make_icons.py`, supersampled 4x): caramel coffee cup with heart cutout, cream steam and saucer on deep espresso — matches the theme tokens exactly.
+- Replaced `icon.png` (1024), `adaptive-icon.png` (1024, artwork inside Android safe zone), `favicon.png` (512), and `splash-image.png` in `frontend/assets/images/`.
+- Updated `app.json`: Android adaptive-icon and splash background colors changed from pure black to brand espresso `#1A1412` so icon, splash, and app blend seamlessly.
+- Added `setAudioModeAsync({ playsInSilentMode: true })` on app mount so recordings still play when Emzilla's iPhone is on silent at night (the core use case).
+- Verified: lint clean, app re-renders with all 5 cards and greeting intact.
+
 ## Prioritized backlog
 
 ### P1 — valuable enhancements
-- Add real app icon artwork based on the coffee cup mark instead of the starter icon.
 - Add optional lock-screen metadata/background audio configuration for native sleep sessions.
 - Add a small "install this app" hint only when the browser exposes an install prompt.
 

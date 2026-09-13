@@ -1,6 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useAudioPlayer, useAudioPlayerStatus } from "expo-audio";
+import { setAudioModeAsync, useAudioPlayer, useAudioPlayerStatus } from "expo-audio";
 import { LinearGradient } from "expo-linear-gradient";
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useRef, useState } from "react";
@@ -38,6 +38,7 @@ export default function Index() {
   const progress = duration ? currentTime / duration : 0;
 
   useEffect(() => {
+    setAudioModeAsync({ playsInSilentMode: true }).catch(() => undefined);
     AsyncStorage.getItem(NOTE_KEY).then((saved) => saved && setNote(saved)).catch(() => undefined);
   }, []);
 
