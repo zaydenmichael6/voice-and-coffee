@@ -1,5 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { useEffect, useMemo, useRef } from "react";
+import { Animated, Pressable, StyleSheet, Text, View } from "react-native";
 
 import type { RecordingConfig } from "@/src/content";
 import { makeStyles } from "@/src/theme";
@@ -37,14 +38,49 @@ export function RecordingCard({ recording, active, playing, progress, currentTim
           <Ionicons name={playing ? "pause" : "play"} size={19} color={styles.playIcon.color} />
         </Pressable>
       </View>
-      <View style={styles.progressTrack}>
-        <View style={[styles.progressFill, { width: `${Math.min(100, Math.max(0, progress * 100))}%` }]} />
-      </View>
+      <Waveform playing={playing} progress={active ? progress : 0} recordingId={recording.id} />
       <View style={styles.metaRow}>
         <Text style={styles.time}>{formatTime(currentTime)}</Text>
         <Text style={styles.time}>{formatTime(duration)}</Text>
       </View>
       {active && !recording.file ? <Text style={styles.placeholder}>placeholder audio · add your recording in src/content.ts</Text> : null}
+    </View>
+  );
+}
+
+const WAVE_BAR_COUNT = 26;
+
+function Waveform({ playing, progress, recordingId }: { playing: boolean; progress: number; recordingId: string }) {
+  const styles = useStyles();
+  const heights = useMemo(() => Array.from({ length: WAVE_BAR_COUNT }, (_, i) => 7 + 17 * Math.abs(Math.sin(i * 1.35))), []);
+  const bars = useRef(Array.from({ length: WAVE_BAR_COUNT }, () => new Animated.Value(0.45))).current;
+
+  useEffect(() => {
+    if (!playing) {
+      bars.forEach((bar) => Animated.timing(bar, { toValue: 0.45, duration: 350, useNativeDriver: true }).start());
+      return;
+    }
+    const loops = bars.map((bar, i) => {
+      const loop = Animated.loop(
+        Animated.sequence([
+          Animated.timing(bar, { toValue: 1, duration: 620 + (i % 5) * 140, useNativeDriver: true }),
+          Animated.timing(bar, { toValue: 0.35, duration: 620 + ((i + 2) % 5) * 120, useNativeDriver: true }),
+        ]),
+      );
+      loop.start();
+      return loop;
+    });
+    return () => loops.forEach((loop) => loop.stop());
+  }, [playing, bars]);
+
+  return (
+    <View style={styles.waveRow} testID={`waveform-${recordingId}`}>
+      {bars.map((bar, i) => (
+        <Animated.View
+          key={i}
+          style={[styles.waveBar, { height: heights[i], transform: [{ scaleY: bar }] }, i / WAVE_BAR_COUNT <= progress ? styles.waveBarActive : styles.waveBarIdle]}
+        />
+      ))}
     </View>
   );
 }
@@ -68,8 +104,10 @@ const useStyles = makeStyles((colors) => StyleSheet.create({
   playButton: { alignItems: "center", backgroundColor: colors.brandPrimary, borderRadius: 24, height: 46, justifyContent: "center", width: 46 },
   playIcon: { color: colors.onBrandPrimary },
   pressed: { opacity: 0.72, transform: [{ scale: 0.94 }] },
-  progressTrack: { backgroundColor: colors.surfaceTertiary, borderRadius: 3, height: 5, marginTop: 16, overflow: "hidden" },
-  progressFill: { backgroundColor: colors.brandPrimary, borderRadius: 3, height: "100%" },
+  waveRow: { alignItems: "center", flexDirection: "row", gap: 4, height: 30, justifyContent: "center", marginTop: 16 },
+  waveBar: { borderRadius: 2, width: 3 },
+  waveBarActive: { backgroundColor: colors.brandPrimary },
+  waveBarIdle: { backgroundColor: colors.surfaceTertiary },
   metaRow: { flexDirection: "row", justifyContent: "space-between", marginTop: 7 },
   time: { color: colors.muted, fontSize: 12, fontVariant: ["tabular-nums"] },
   placeholder: { color: colors.brandPrimary, fontSize: 11, marginTop: 10 },

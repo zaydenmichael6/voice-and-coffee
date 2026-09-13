@@ -8,6 +8,7 @@ import { Animated, KeyboardAvoidingView, LayoutAnimation, Platform, Pressable, S
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { BIRTHDAY_MESSAGE, BIRTHDAY_TITLE, DEFAULT_NOTE, recordings, type RecordingConfig } from "@/src/content";
+import { InstallHint } from "@/src/components/InstallHint";
 import { RecordingCard } from "@/src/components/RecordingCard";
 import { SleepMode } from "@/src/components/SleepMode";
 import { makeStyles } from "@/src/theme";
@@ -218,6 +219,7 @@ export default function Index() {
           </View>
 
           <View style={styles.replaceBox}><Ionicons name="information-circle-outline" size={19} color={styles.infoIcon.color} /><View style={styles.replaceCopy}><Text style={styles.replaceTitle}>make it yours</Text><Text style={styles.replaceText}>your real voice recordings are connected. to change them later, edit <Text style={styles.replaceCode}>src/content.ts</Text> — your audio lives in assets/audio.</Text></View></View>
+          <InstallHint />
           <Text style={styles.footer}>a tiny digital love letter, for the nights you need me.</Text>
         </ScrollView>
       </LinearGradient>

@@ -52,20 +52,25 @@ Build a private, romantic sleep companion for Emzilla: a warm coffee-brown mobil
 - Added `setAudioModeAsync({ playsInSilentMode: true })` on app mount so recordings still play when Emzilla's iPhone is on silent at night (the core use case).
 - Verified: lint clean, app re-renders with all 5 cards and greeting intact.
 
+## Install hint + waveform visual — 2026-09-13
+- Added `src/components/InstallHint.tsx`: a gentle, dismissible web-only nudge rendered above the footer. Android/Chrome branch captures `beforeinstallprompt` and triggers the native install prompt; iPhone/iPad branch shows manual Safari share-sheet steps. Hidden when already installed (standalone) and after dismissal, persisted via `@/src/utils/storage` (`emzilla-install-hint-dismissed`).
+- Replaced the thin progress bar in `RecordingCard` with a 26-bar animated waveform: bars pulse with staggered slow loops only while that card is playing, settle back on pause, and fill caramel vs. muted based on real playback progress.
+- Verified at 390x844: waveform bars render on every card and transforms advance while playing; install hint appears under an iPhone Safari UA with manual steps, dismisses, and stays dismissed after reload.
+
 ## Prioritized backlog
 
 ### P1 — valuable enhancements
 - Add optional lock-screen metadata/background audio configuration for native sleep sessions.
-- Add a small "install this app" hint only when the browser exposes an install prompt.
 
 ### P2 — polish ideas
-- Add a subtle waveform visualization driven by real audio samples.
+- Drive the waveform bars from real audio amplitude samples instead of staggered loops.
 - Add a private export/import action for the editable note and content configuration.
 - Add gentle haptic confirmation for play, timer, and birthday reveal on native devices.
 
 ## Next tasks list
 1. Test each recording on Emzilla's actual iPhone/Android (or Expo Go) with volume and silent-mode behavior checked.
-2. Optionally replace placeholder durations — real durations load automatically from each file once playback starts.
+2. Deploy via the Publish button and generate iOS/Android builds so the custom coffee icon appears on her real home screen.
+3. Optionally replace placeholder durations — real durations load automatically from each file once playback starts.
 
 ## Known intentional limitation
 - None blocking. All five real recordings are wired; the headless test browser's lack of AAC codec support is an environment-only limitation, not an app bug.
