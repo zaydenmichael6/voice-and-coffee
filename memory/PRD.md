@@ -62,6 +62,11 @@ Build a private, romantic sleep companion for Emzilla: a warm coffee-brown mobil
 - Gentle light impact on every play/pause tap, selection tick when a sleep-timer option is chosen, and a success notification buzz when the triple-tap coffee cup reveals the birthday message.
 - Regression-checked on web (haptics no-op there): play toggle, Surprise Me, and birthday reveal all work unchanged.
 
+## Emily's photo in the hero — 2026-09-13
+- Replaced the coffee-cup icon inside the hero circle (beside "hi princess 🤎") with the creator's uploaded photo of Emily (`frontend/assets/images/emily.jpg`).
+- Cropped the original 1280x960 photo to a warm square (face, smile, and coffee cup kept in frame) at 512x512 via PIL, rendered with `expo-image` (`contentFit="cover"`) inside the existing circular, bordered, gently pulsing orb.
+- Verified at 390x844: photo loads and displays correctly in the circle; all other UI unchanged.
+
 ## Prioritized backlog
 
 ### P1 — valuable enhancements
