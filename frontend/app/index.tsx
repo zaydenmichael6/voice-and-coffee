@@ -3,6 +3,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { setAudioModeAsync, useAudioPlayer, useAudioPlayerStatus } from "expo-audio";
 import { LinearGradient } from "expo-linear-gradient";
 import { StatusBar } from "expo-status-bar";
+import * as Haptics from "expo-haptics";
 import { useEffect, useRef, useState } from "react";
 import { Animated, KeyboardAvoidingView, LayoutAnimation, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -96,7 +97,15 @@ export default function Index() {
     return () => clearInterval(interval);
   }, [isPlaying, player, timer]);
 
+  const buzz = (style: "light" | "select" | "success") => {
+    if (Platform.OS === "web") return;
+    if (style === "light") Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    else if (style === "select") Haptics.selectionAsync();
+    else Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+  };
+
   const toggleRecording = (recording: RecordingConfig) => {
+    buzz("light");
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     if (recording.id !== activeId) {
       player.pause();
@@ -133,6 +142,7 @@ export default function Index() {
     if (coffeeReset.current) clearTimeout(coffeeReset.current);
     if (coffeeTaps.current >= 3) {
       coffeeTaps.current = 0;
+      buzz("success");
       setBirthdayVisible(true);
       return;
     }
@@ -140,6 +150,7 @@ export default function Index() {
   };
 
   const handleTimer = (value: number) => {
+    buzz("select");
     setTimer(value);
     setTimerRemaining(value * 60);
   };

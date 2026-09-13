@@ -57,6 +57,11 @@ Build a private, romantic sleep companion for Emzilla: a warm coffee-brown mobil
 - Replaced the thin progress bar in `RecordingCard` with a 26-bar animated waveform: bars pulse with staggered slow loops only while that card is playing, settle back on pause, and fill caramel vs. muted based on real playback progress.
 - Verified at 390x844: waveform bars render on every card and transforms advance while playing; install hint appears under an iPhone Safari UA with manual steps, dismisses, and stays dismissed after reload.
 
+## Haptic touches — 2026-09-13
+- Installed `expo-haptics` and added a web-guarded `buzz` helper in `app/index.tsx`.
+- Gentle light impact on every play/pause tap, selection tick when a sleep-timer option is chosen, and a success notification buzz when the triple-tap coffee cup reveals the birthday message.
+- Regression-checked on web (haptics no-op there): play toggle, Surprise Me, and birthday reveal all work unchanged.
+
 ## Prioritized backlog
 
 ### P1 — valuable enhancements
@@ -65,7 +70,6 @@ Build a private, romantic sleep companion for Emzilla: a warm coffee-brown mobil
 ### P2 — polish ideas
 - Drive the waveform bars from real audio amplitude samples instead of staggered loops.
 - Add a private export/import action for the editable note and content configuration.
-- Add gentle haptic confirmation for play, timer, and birthday reveal on native devices.
 
 ## Next tasks list
 1. Test each recording on Emzilla's actual iPhone/Android (or Expo Go) with volume and silent-mode behavior checked.
