@@ -45,14 +45,37 @@ export default function Index() {
     AsyncStorage.getItem(NOTE_KEY).then((saved) => saved && setNote(saved)).catch(() => undefined);
   }, []);
 
+  // PWA + iPhone home-screen support. +html.tsx covers static export; this
+  // runtime pass covers the dev/preview server (which serves its own shell).
   useEffect(() => {
     if (Platform.OS !== "web" || typeof document === "undefined") return;
-    const manifest = document.createElement("link");
-    manifest.rel = "manifest";
-    manifest.href = "/manifest.json";
-    document.head.appendChild(manifest);
+    const head = document.head;
+    const addMeta = (name: string, content: string) => {
+      if (head.querySelector(`meta[name="${name}"]`)) return;
+      const meta = document.createElement("meta");
+      meta.name = name;
+      meta.content = content;
+      head.appendChild(meta);
+    };
+    const addLink = (rel: string, href: string, sizes?: string) => {
+      if (head.querySelector(`link[rel="${rel}"]`)) return;
+      const link = document.createElement("link");
+      link.rel = rel;
+      link.href = href;
+      if (sizes) link.setAttribute("sizes", sizes);
+      head.appendChild(link);
+    };
+    addLink("manifest", "/manifest.json");
+    addLink("apple-touch-icon", "/apple-touch-icon.png");
+    addMeta("mobile-web-app-capable", "yes");
+    addMeta("apple-mobile-web-app-capable", "yes");
+    addMeta("apple-mobile-web-app-status-bar-style", "black-translucent");
+    addMeta("apple-mobile-web-app-title", "emzilla 🤎");
+    const viewport = head.querySelector('meta[name="viewport"]');
+    if (viewport && !viewport.getAttribute("content")?.includes("viewport-fit")) {
+      viewport.setAttribute("content", "width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover");
+    }
     if ("serviceWorker" in navigator) navigator.serviceWorker.register("/service-worker.js").catch(() => undefined);
-    return () => manifest.remove();
   }, []);
 
   useEffect(() => {

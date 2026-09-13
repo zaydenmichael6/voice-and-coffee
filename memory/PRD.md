@@ -67,6 +67,14 @@ Build a private, romantic sleep companion for Emzilla: a warm coffee-brown mobil
 - Cropped the original 1280x960 photo to a warm square (face, smile, and coffee cup kept in frame) at 512x512 via PIL, rendered with `expo-image` (`contentFit="cover"`) inside the existing circular, bordered, gently pulsing orb.
 - Verified at 390x844: photo loads and displays correctly in the circle; all other UI unchanged.
 
+## iPhone PWA / Add to Home Screen — 2026-09-13
+- Generated real PWA icons from the coffee-cup artwork into `frontend/public/`: `icon-192.png`, `icon-512.png`, and `apple-touch-icon.png` (180x180, opaque espresso — iOS-safe).
+- Rewrote `public/manifest.json` with working icon paths, `display: standalone`, portrait orientation, start_url/scope, and brand theme/background colors.
+- Extended `app/+html.tsx` (static export path): viewport-fit=cover, title, theme-color, manifest link, icon links, `apple-mobile-web-app-capable`, `mobile-web-app-capable`, `black-translucent` status bar, `apple-mobile-web-app-title`, apple-touch-icon, espresso body background, and inline service-worker registration.
+- Added an idempotent runtime injection in `app/index.tsx` because the dev/preview server serves its own HTML shell and ignores `+html.tsx`; it adds any missing manifest/apple meta/link tags, upgrades viewport to viewport-fit=cover, and registers the service worker. Deployed export and dev preview are both covered.
+- Bumped service-worker cache to `emzilla-shell-v2`; audio streams stay uncached.
+- Verified: all PWA assets serve HTTP 200, live DOM contains every required tag, service worker registers, and playback/waveform/UI are unchanged.
+
 ## Prioritized backlog
 
 ### P1 — valuable enhancements
